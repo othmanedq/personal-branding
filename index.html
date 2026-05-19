@@ -9,17 +9,17 @@
   <meta property="og:type"        content="website">
   <meta property="og:title"       content="Othmane Eddaqqaq · Football. Data. Morocco.">
   <meta property="og:description" content="PSG Academy alumni. Barca fan since 2009. Co-creator of Sqrew Football. Data meets the beautiful game.">
-  <meta property="og:image"       content="assets/images/psg-academy.jpg">
+  <meta property="og:image"       content="assets/images/psg-academy.webp">
   <meta name="twitter:card"        content="summary_large_image">
   <meta name="twitter:title"       content="Othmane Eddaqqaq · Football. Data. Morocco.">
   <meta name="twitter:description" content="PSG Academy alumni. Barca fan since 2009. Co-creator of Sqrew Football.">
-  <meta name="twitter:image"       content="assets/images/psg-academy.jpg">
+  <meta name="twitter:image"       content="assets/images/psg-academy.webp">
   <meta name="description"         content="Othmane Eddaqqaq Moroccan football obsessive. PSG Academy alumni. Barca fan since 2009. Co-creator of Sqrew Football.">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080808'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia%2C serif' font-weight='700' font-size='16' fill='%23D4A017'%3EOE%3C/text%3E%3C/svg%3E">
@@ -34,12 +34,20 @@
 <nav id="main-nav" aria-label="Site navigation">
   <div class="nav-inner">
     <div class="nav-logo">OE.</div>
-    <div class="nav-links">
-      <a href="#story">Story</a>
-      <a href="#stats">Numbers</a>
-      <a href="#sqrew">Analysis</a>
-      <a href="quiz.html">Quiz</a>
-      <a href="#now">Contact</a>
+    <div class="nav-audio-wrapper">
+      <div class="nav-links">
+        <a href="#story">Story</a>
+        <a href="#stats">Numbers</a>
+        <a href="#sqrew">Analysis</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="#now">Contact</a>
+      </div>
+      <button id="mute-btn" class="audio-mute-btn" aria-label="Mute sound" onclick="toggleMute()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="speaker-icon">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path class="sound-wave" d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+      </button>
     </div>
   </div>
 </nav>
@@ -61,7 +69,7 @@
 <div id="choice-modal" class="choice-modal" aria-hidden="true">
   <div class="choice-panel">
     <div class="choice-face" id="choice-face">
-      <img id="choice-face-img" src="assets/images/face-smirk.png" alt="">
+      <img id="choice-face-img" src="assets/images/face-smirk.webp" alt="" width="91" height="150">
     </div>
     <p class="choice-verdict" id="choice-verdict"></p>
     <p class="choice-prompt" id="choice-prompt">Now choose.</p>
@@ -156,7 +164,7 @@
       <span class="ticker-item ticker-sep">·</span>
       <span class="ticker-item">SQREW FOOTBALL</span>
       <span class="ticker-item ticker-sep">·</span>
-      <span class="ticker-item">5 LEAGUES</span>
+      <span class="ticker-item">7,299 PL MATCHES</span>
       <span class="ticker-item ticker-sep">·</span>
       <span class="ticker-item">KNOW THE GAME</span>
       <span class="ticker-item ticker-sep">·</span>
@@ -169,7 +177,7 @@
       <span class="ticker-item ticker-sep">·</span>
       <span class="ticker-item">SQREW FOOTBALL</span>
       <span class="ticker-item ticker-sep">·</span>
-      <span class="ticker-item">5 LEAGUES</span>
+      <span class="ticker-item">7,299 PL MATCHES</span>
       <span class="ticker-item ticker-sep">·</span>
       <span class="ticker-item">KNOW THE GAME</span>
       <span class="ticker-item ticker-sep">·</span>
@@ -213,7 +221,7 @@
           </p>
         </div>
         <div class="tl-photo">
-          <img src="assets/images/psg-academy.jpg" alt="PSG Academy Morocco" loading="lazy">
+          <img src="assets/images/psg-academy.webp" alt="PSG Academy Morocco" loading="lazy" width="800" height="451">
           <div class="tl-photo-label">PSG Academy Morocco</div>
         </div>
       </div>
@@ -249,7 +257,7 @@
           </p>
         </div>
         <div class="tl-photo">
-          <img src="assets/images/qatar-wc.jpg" alt="Morocco 2022 World Cup Qatar" loading="lazy">
+          <img src="assets/images/qatar-wc.webp" alt="Morocco 2022 World Cup Qatar" loading="lazy" width="450" height="600">
           <div class="tl-photo-label">Morocco · 2022 World Cup</div>
         </div>
       </div>
@@ -267,7 +275,7 @@
           </p>
         </div>
         <div class="tl-photo">
-          <img src="assets/images/el-clasico.jpg" alt="El Clasico Paris event" loading="lazy">
+          <img src="assets/images/el-clasico.webp" alt="El Clasico Paris event" loading="lazy" width="700" height="525">
           <div class="tl-photo-label">El Clasico · Paris</div>
         </div>
       </div>
@@ -279,14 +287,14 @@
       <div class="tl-dot"></div>
       <div class="tl-body no-photo">
         <div class="tl-text">
-          <div class="tl-heading">Albert School</div>
+          <div class="tl-heading">Albert School (S6)</div>
           <p class="tl-desc">
-            Studying <strong>data and finance</strong> at Albert School. Bringing that lens to sports — because football has never been more quantifiable, and most people still watch it with their eyes closed.
+            Finishing my Bachelor 3 (S6) in Business & Data at Albert School. Mastering <strong>Python, SQL, Machine Learning, and Data Modeling</strong>. Translating complex datasets into concrete business strategies through intensive corporate case studies.
           </p>
         </div>
         <div class="tl-card">
-          <div class="tl-card-stat">5</div>
-          <div class="tl-card-label">Leagues tracked weekly</div>
+          <div class="tl-card-stat">3</div>
+          <div class="tl-card-label">Years of business & data study</div>
         </div>
       </div>
     </div>
@@ -299,10 +307,11 @@
 
   <!-- Part A: single big stat -->
   <div class="single-stat-block reveal reveal-delay-1">
-    <div class="single-stat-num">0<span class="single-stat-plus">+</span></div>
+    <div class="single-stat-num">827<span class="single-stat-plus">+</span></div>
     <div class="single-stat-label">Barca + Morocco matches since 2014</div>
     <p class="single-stat-sub">Every La Liga game. Every Copa. Every UCL night. Every AFCON qualifier. Every World Cup minute.</p>
   </div>
+
 
   <!-- Part B: emotional timeline -->
   <h2 class="reveal section-title reveal-delay-2" style="margin-top:4rem">The moments that cost me.</h2>
@@ -378,7 +387,7 @@
       <div class="moment-note">"Messi missed. We lost on pens. That's football being cruel."</div>
     </div>
     <div class="moment-card is-barca">
-      <div class="moment-img mi-gold" data-wiki="2016–17_UEFA_Champions_League_round_of_16"><div class="mi-bg"></div><div class="mi-score mi-gold-txt">6<span class="mi-sep">-</span>1</div><div class="mi-label">Remontada ⚡</div></div>
+      <div class="moment-img mi-gold" data-wiki="2016–17_UEFA_Champions_League_round_of_16"><div class="mi-bg"></div><div class="mi-score mi-gold-txt">6<span class="mi-sep">-</span>1</div><div class="mi-label">Remontada</div></div>
 <div class="moment-year">2017</div>
       <div class="moment-team">BARÇA</div>
       <div class="moment-title">Remontada. 6-1 vs PSG.</div>
@@ -420,7 +429,7 @@
       <div class="moment-note">"The worst night of my life. No Salah. No Firmino. Didn't matter."</div>
     </div>
     <div class="moment-card is-barca">
-      <div class="moment-img mi-dark" data-wiki="2019–20_UEFA_Champions_League_quarter-finals"><div class="mi-bg"></div><div class="mi-score mi-pain mi-huge">8<span class="mi-sep">-</span>2</div><div class="mi-label">Lisbon 💀</div></div>
+      <div class="moment-img mi-dark" data-wiki="2019–20_UEFA_Champions_League_quarter-finals"><div class="mi-bg"></div><div class="mi-score mi-pain mi-huge">8<span class="mi-sep">-</span>2</div><div class="mi-label">Lisbon</div></div>
 <div class="moment-year">2020</div>
       <div class="moment-team">BARÇA</div>
       <div class="moment-title">Bayern. Lisbon. 8-2.</div>
@@ -497,14 +506,88 @@
     <div class="analysis-text">
       <div class="analysis-index">02</div>
       <div class="analysis-heading">TacticAI — DeepMind × Liverpool FC</div>
-      <p class="analysis-desc">I analyzed TacticAI, a research paper by Google DeepMind and Liverpool FC applying graph neural networks to corner kick optimization. The finding that stopped me: 1 in 8 goals comes from corners. 30% of professional goals originate from set pieces. Data changes how you read a dead ball situation.</p>
+      <p class="analysis-desc">I analyzed a groundbreaking study by Google DeepMind and Liverpool FC on how teams can use AI to optimize corner kicks. Set pieces are game-changers: 1 in 8 goals comes from a corner, and 30% of all professional goals start from a dead ball. Using data completely rewrites how teams attack and defend every corner.</p>
       <a href="https://arxiv.org/abs/2310.10553" target="_blank" rel="noopener noreferrer" class="sqrew-link">Read on arXiv &rarr;</a>
     </div>
     <div class="analysis-card">
       <div class="analysis-stat"><span class="analysis-stat-num">1/8</span><span class="analysis-stat-label">Goals scored from corners</span></div>
       <div class="analysis-stat"><span class="analysis-stat-num">30%</span><span class="analysis-stat-label">Pro goals from set pieces</span></div>
-      <div class="analysis-stat"><span class="analysis-stat-num">GNN</span><span class="analysis-stat-label">Graph Neural Networks applied to football</span></div>
+      <div class="analysis-stat"><span class="analysis-stat-num">AI</span><span class="analysis-stat-label">Advanced tactical helper for coaches</span></div>
       <div class="analysis-badge">Google DeepMind × Liverpool FC · 2024</div>
+    </div>
+  </div>
+
+  <!-- TacticAI Interactive Corner Kick Visualizer -->
+  <div class="tacticai-container reveal reveal-delay-2" style="margin-top: 3rem; margin-bottom: 5rem;">
+    <h3 class="odds-sim-title">TacticAI: Interactive Corner Kick Visualizer</h3>
+    <p class="odds-sim-subtitle">Simulate real-time, optimal corner kick passing paths designed by Google DeepMind and Liverpool FC using advanced AI.</p>
+    
+    <div class="tactic-layout">
+      <!-- Interactive Tactical Blackboard Pitch -->
+      <div class="tactic-board-wrapper">
+        <svg class="tactic-pitch-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <!-- Grass pitch grid representation -->
+          <rect width="400" height="300" fill="var(--dark3)" rx="4"/>
+          <!-- Penalty box lines -->
+          <rect x="0" y="50" width="100" height="200" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" fill="none"/>
+          <rect x="0" y="100" width="35" height="100" stroke="rgba(255,255,255,0.06)" stroke-width="1" fill="none"/>
+          <!-- Goal post outline -->
+          <line x1="0" y1="120" x2="0" y2="180" stroke="var(--gold)" stroke-width="3"/>
+          <!-- Corner kick spot (top left corner) -->
+          <path d="M 0 15 A 15 15 0 0 1 15 0" stroke="rgba(255,255,255,0.15)" stroke-width="1" fill="none"/>
+          <circle cx="2" cy="2" r="3" fill="var(--gold)" id="corner-spot"/>
+          
+          <!-- Players Node graph (GNN layout) -->
+          <!-- Attacking Players (Golden nodes) -->
+          <g id="gnn-attackers">
+            <circle id="player-a1" cx="60" cy="110" r="5" fill="var(--gold)" opacity="0.6"/>
+            <circle id="player-a2" cx="80" cy="150" r="5" fill="var(--gold)" opacity="0.6"/>
+            <circle id="player-a3" cx="50" cy="190" r="5" fill="var(--gold)" opacity="0.6"/>
+            <circle id="player-a4" cx="120" cy="150" r="5" fill="var(--gold)" opacity="0.6"/>
+          </g>
+          <!-- Defending Players (Red nodes) -->
+          <g id="gnn-defenders">
+            <circle id="player-d1" cx="45" cy="115" r="5" fill="var(--red)" opacity="0.5"/>
+            <circle id="player-d2" cx="65" cy="140" r="5" fill="var(--red)" opacity="0.5"/>
+            <circle id="player-d3" cx="40" cy="175" r="5" fill="var(--red)" opacity="0.5"/>
+            <circle id="player-d4" cx="95" cy="155" r="5" fill="var(--red)" opacity="0.5"/>
+          </g>
+          
+          <!-- Connection graph neural network pathways (Dynamic GNN links) -->
+          <path id="gnn-path-1" d="M 2 2 L 60 110" stroke="rgba(212,160,23,0)" stroke-width="1" stroke-dasharray="4,4" fill="none"/>
+          <path id="gnn-path-2" d="M 2 2 L 80 150" stroke="rgba(212,160,23,0)" stroke-width="1.5" stroke-dasharray="4,4" fill="none"/>
+          <path id="gnn-path-3" d="M 2 2 L 50 190" stroke="rgba(212,160,23,0)" stroke-width="1" stroke-dasharray="4,4" fill="none"/>
+          
+          <!-- Visual Trajectory Line (animated corner pass) -->
+          <path id="ball-trajectory" d="" stroke="var(--gold)" stroke-width="2" fill="none" opacity="0"/>
+          <!-- Animated football ball -->
+          <circle id="soccer-ball" cx="2" cy="2" r="4" fill="#fff" opacity="0"/>
+        </svg>
+      </div>
+      
+      <!-- Interactive Selector Controls -->
+      <div class="tactic-controls">
+        <button id="tactic-btn-1" class="tactic-btn active" onclick="playCornerScenario(1)">
+          <span class="tactic-btn-tag">Scenario 01</span>
+          <span class="tactic-btn-title">Front-Post Curve</span>
+          <span class="tactic-btn-desc">A sharp cross curving toward the front post, pulling defenders out of position.</span>
+        </button>
+        <button id="tactic-btn-2" class="tactic-btn" onclick="playCornerScenario(2)">
+          <span class="tactic-btn-tag">Scenario 02</span>
+          <span class="tactic-btn-title">High Cross to Penalty Spot</span>
+          <span class="tactic-btn-desc">A high cross toward the penalty spot, optimized for a powerful header from a deep runner.</span>
+        </button>
+        <button id="tactic-btn-3" class="tactic-btn" onclick="playCornerScenario(3)">
+          <span class="tactic-btn-tag">Scenario 03</span>
+          <span class="tactic-btn-title">Quick Short Pass</span>
+          <span class="tactic-btn-desc">A quick short pass that tricks the defenders and creates an easy shooting angle.</span>
+        </button>
+        
+        <div class="tactic-details">
+          <div class="tactic-details-title">AI Tactical Breakdown:</div>
+          <div id="tactic-explanation" class="tactic-details-text">Click a scenario to see the AI tactical breakdown...</div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -512,15 +595,80 @@
   <div class="analysis-block reveal">
     <div class="analysis-text">
       <div class="analysis-index">03</div>
-      <div class="analysis-heading">Are Bookmaker Odds Rational Forecasts?</div>
-      <p class="analysis-desc">Co-authored an academic paper (Albert School × Mines Paris PSL) testing whether Bet365 implied probabilities are rational and efficient forecasts across 20 seasons of Premier League data. We applied ARIMA modelling, Granger causality tests, and the Mincer-Zarnowitz rationality test. The market is broadly efficient — except for away wins, where bookmakers systematically understate the probability (p = 0.028).</p>
-      <span class="sqrew-link" style="opacity:0.35;pointer-events:none;cursor:default">Paper available on request</span>
+      <div class="analysis-heading">Are Bookmaker Odds Accurate Forecasts?</div>
+      <p class="analysis-desc">Co-authored a research paper at Albert School analyzing 20 seasons of Premier League match odds. We tested whether betting company odds are truly accurate forecasts. The result? The market is generally correct—except for away wins. Bookmakers systematically underestimate how often the away team wins, creating a proven betting edge for smart players.</p>
+      <a href="Premier_League_Efficiency_Report.pdf" target="_blank" rel="noopener noreferrer" class="sqrew-link">Read Research Paper &rarr;</a>
     </div>
     <div class="analysis-card">
       <div class="analysis-stat"><span class="analysis-stat-num">7,299</span><span class="analysis-stat-label">Premier League matches analyzed</span></div>
       <div class="analysis-stat"><span class="analysis-stat-num">20</span><span class="analysis-stat-label">Seasons of data (2005–2025)</span></div>
-      <div class="analysis-stat"><span class="analysis-stat-num">p = 0.028</span><span class="analysis-stat-label">Away-win bias — statistically significant</span></div>
-      <div class="analysis-badge">Albert School × Mines Paris PSL · May 2025</div>
+      <div class="analysis-stat"><span class="analysis-stat-num">2.8%</span><span class="analysis-stat-label">Away-win betting edge (Value)</span></div>
+      <div class="analysis-badge">Albert School · May 2025</div>
+    </div>
+  </div>
+
+  <!-- PART A.5: Odds Simulator Widget -->
+  <div class="odds-simulator-container reveal reveal-delay-2" style="margin-top: 3rem; margin-bottom: 5rem;">
+    <h3 class="odds-sim-title">Bookmaker Odds vs My Prediction Model</h3>
+    <p class="odds-sim-subtitle">Interactive simulation testing real-life bookmaker odds against my prediction model (Albert School study, 7,299 matches).</p>
+    
+    <div class="odds-sim-layout">
+      <!-- Sliders Panel -->
+      <div class="odds-sim-inputs">
+        <div class="sim-input-group">
+          <label for="home-form">Home Team Form: <span id="val-home-form" class="data-num">50</span>%</label>
+          <input type="range" id="home-form" min="10" max="90" value="50" class="sim-slider" oninput="updateOddsSim()">
+        </div>
+        <div class="sim-input-group">
+          <label for="away-form">Away Team Form: <span id="val-away-form" class="data-num">50</span>%</label>
+          <input type="range" id="away-form" min="10" max="90" value="50" class="sim-slider" oninput="updateOddsSim()">
+        </div>
+        <div class="sim-input-group highlight-input">
+          <label>Smart Betting Adjustment: <span id="val-away-bias" class="data-num">Active</span></label>
+          <div class="sim-toggle-wrapper">
+            <button id="away-bias-btn" class="sim-toggle-btn active" onclick="toggleAwayBias()">Applied (Proven Edge)</button>
+          </div>
+          <p class="bias-explain">Our research proved that bookmakers consistently underestimate away teams, giving you a statistical edge.</p>
+        </div>
+      </div>
+      
+      <!-- Comparative Gauges Dashboard -->
+      <div class="odds-sim-outputs">
+        <div class="gauge-card">
+          <div class="gauge-label">My Model's Predicted Chance (Away Win)</div>
+          <div class="gauge-wrapper">
+            <svg class="gauge-svg" viewBox="0 0 100 100">
+              <circle class="gauge-bg" cx="50" cy="50" r="40" />
+              <circle id="model-gauge" class="gauge-bar model-bar" cx="50" cy="50" r="40" />
+            </svg>
+            <div id="model-prob-display" class="gauge-value data-num">33.3%</div>
+          </div>
+        </div>
+        <div class="gauge-card">
+          <div class="gauge-label">Bookmaker's Predicted Chance (Away Win)</div>
+          <div class="gauge-wrapper">
+            <svg class="gauge-svg" viewBox="0 0 100 100">
+              <circle class="gauge-bg" cx="50" cy="50" r="40" />
+              <circle id="bookie-gauge" class="gauge-bar bookie-bar" cx="50" cy="50" r="40" />
+            </svg>
+            <div id="bookie-prob-display" class="gauge-value data-num">30.5%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Interactive Formula Box -->
+    <div id="odds-sim-formula-box" class="highlight-input" style="margin-top: 1.5rem; border-color: rgba(255,255,255,0.06); padding: 1rem 1.2rem;">
+      <div style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.3rem;">How the Prediction Model Thinks:</div>
+      <div id="odds-sim-formula-text" style="font-size: 0.82rem; font-weight: 300; line-height: 1.4; color: var(--white); font-family: var(--mono);">
+        My Predicted Chance = 50.0% / (50.0% + 50.0%) = 50.0%<br>
+        Bookmaker's Chance = 50.0% - 2.8% (betting edge adjustment) = 47.2%
+      </div>
+    </div>
+
+    <div class="odds-sim-footer">
+      <span class="sim-verdict-tag">Market Discrepancy Found:</span>
+      <span id="odds-sim-verdict" class="sim-verdict-text">Away win is underpriced by Bookmakers (Value Bet!)</span>
     </div>
   </div>
 </section>

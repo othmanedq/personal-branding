@@ -14,7 +14,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080808'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia%2C serif' font-weight='700' font-size='16' fill='%23D4A017'%3EOE%3C/text%3E%3C/svg%3E">
@@ -28,13 +28,21 @@
 <!-- NAV — visible by default (no hero on this page) -->
 <nav id="main-nav" class="visible" aria-label="Site navigation">
   <div class="nav-inner">
-    <div class="nav-logo"><a href="index.html" style="color:inherit;text-decoration:none">OE.</a></div>
-    <div class="nav-links">
-      <a href="index.html#story">Story</a>
-      <a href="index.html#stats">Numbers</a>
-      <a href="index.html#sqrew">Sqrew</a>
-      <a href="quiz.html" class="nav-active">Quiz</a>
-    </div>
+     <div class="nav-logo"><a href="index.html" style="color:inherit;text-decoration:none">OE.</a></div>
+     <div class="nav-audio-wrapper">
+       <div class="nav-links">
+         <a href="index.html#story">Story</a>
+         <a href="index.html#stats">Numbers</a>
+         <a href="index.html#sqrew">Sqrew</a>
+         <a href="quiz.html" class="nav-active">Quiz</a>
+       </div>
+       <button id="mute-btn" class="audio-mute-btn" aria-label="Mute sound" onclick="toggleMute()">
+         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="speaker-icon">
+           <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+           <path class="sound-wave" d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+         </svg>
+       </button>
+     </div>
   </div>
 </nav>
 
@@ -50,7 +58,66 @@
 
 <!-- QUIZ -->
 <section id="quiz">
-  <div id="quiz-container">
+  <!-- SELECTION SCREEN -->
+  <div class="quiz-selection-screen" id="selection-screen">
+    <h2 class="selection-title">Select Your Challenge</h2>
+    <p class="selection-subtitle">Tailor the quiz to your expertise level. Choose a topic and difficulty below.</p>
+    
+    <div class="selection-grid">
+      <!-- Topics -->
+      <div class="selection-section">
+        <div class="selection-section-title">1. Choose Topic</div>
+        <div class="selection-options-vertical" id="topic-selector-group">
+          <button class="selection-option-btn active" data-type="topic" data-val="tactics" onclick="selectQuizParam('topic', 'tactics')">
+            <span class="opt-title">Tactics & Strategy</span>
+            <span class="opt-desc">Formations, roles, transitions, and in-game adjustments.</span>
+          </button>
+          <button class="selection-option-btn" data-type="topic" data-val="ucl" onclick="selectQuizParam('topic', 'ucl')">
+            <span class="opt-title">Champions League & La Liga</span>
+            <span class="opt-desc">Historic tournament clashes, iconic goals, and stats.</span>
+          </button>
+          <button class="selection-option-btn" data-type="topic" data-val="morocco" onclick="selectQuizParam('topic', 'morocco')">
+            <span class="opt-title">Moroccan Football Obsession</span>
+            <span class="opt-desc">Atlas Lions history, 2022 World Cup run, and domestic football.</span>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Difficulties -->
+      <div class="selection-section">
+        <div class="selection-section-title">2. Choose Difficulty</div>
+        <div class="selection-options-vertical" id="diff-selector-group">
+          <button class="selection-option-btn" data-type="difficulty" data-val="casual" onclick="selectQuizParam('difficulty', 'casual')">
+            <span class="opt-title" style="color: var(--success);">Casual Fan</span>
+            <span class="opt-desc">Standard knowledge, great for casual watchers.</span>
+          </button>
+          <button class="selection-option-btn active" data-type="difficulty" data-val="analyst" onclick="selectQuizParam('difficulty', 'analyst')">
+            <span class="opt-title" style="color: var(--gold);">Tactical Analyst</span>
+            <span class="opt-desc">Intermediate depth, focuses on formations and key history.</span>
+          </button>
+          <button class="selection-option-btn" data-type="difficulty" data-val="obsessive" onclick="selectQuizParam('difficulty', 'obsessive')">
+            <span class="opt-title" style="color: var(--red);">Football Obsessive</span>
+            <span class="opt-desc">Insanely hard details, stats, dates. Prepare to fail.</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <button class="start-quiz-btn" onclick="startSelectedQuiz()">Lock Selection & Start Kickoff &rarr;</button>
+  </div>
+
+  <div id="quiz-container" style="display: none;">
+    <!-- Timer Shot Clock -->
+    <div class="shot-clock-wrapper" id="shot-clock-container" style="display: none;">
+      <div class="shot-clock-header">
+        <span class="shot-clock-label">Shot Clock</span>
+        <span class="shot-clock-time" id="shot-clock-time">15s</span>
+      </div>
+      <div class="shot-clock-bar-bg">
+        <div class="shot-clock-bar" id="shot-clock-bar"></div>
+      </div>
+    </div>
+
     <!-- Progress bar -->
     <div class="quiz-progress">
       <div class="progress-steps" id="progress-steps"></div>
@@ -60,11 +127,14 @@
     <div class="quiz-reaction">
       <div class="speech-bubble">
         <div class="bubble-face" id="reaction-emoji">
-          <img src="assets/images/face-smirk.png" alt="Othmane reaction">
+          <img src="assets/images/face-smirk.webp" alt="Othmane reaction" width="91" height="150">
         </div>
         <span class="bubble-text" id="reaction-text">"Go ahead. I dare you."</span>
       </div>
-      <div class="score-display" id="score-display">0 / 0</div>
+      <div class="score-streak-wrapper" style="display: flex; flex-direction: column; align-items: flex-end; gap: 0.2rem;">
+        <div class="streak-badge" id="streak-badge" style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 800; color: #fff; background: var(--red); padding: 0.2rem 0.5rem; border-radius: 2px; display: none; letter-spacing: 0.05em; animation: pulseStreak 1s infinite alternate;">HOT STREAK: <span id="streak-num">0</span></div>
+        <div class="score-display" id="score-display">0 / 0</div>
+      </div>
     </div>
 
     <div id="questions-list"></div>
@@ -74,8 +144,96 @@
     <div class="final-score-big" id="final-score-num">0<span>/10</span></div>
     <h3 class="final-title" id="final-title">GG</h3>
     <p class="final-subtitle" id="final-subtitle"></p>
+    
+    <!-- Personalization Field -->
+    <div class="scout-name-input-wrapper" id="scout-name-input-wrapper" style="display: none; margin-bottom: 2rem;">
+      <label for="scout-name-input" class="scout-name-input-label">Enter Scout / Recruiter Name:</label>
+      <input type="text" id="scout-name-input" class="scout-name-input-field" maxlength="20" placeholder="GUEST SCOUT" oninput="updateScoutCardName(this.value)">
+    </div>
+
+    <!-- Tactical Audit Report Card (Upgraded to FM style) -->
+    <div class="tactical-audit-card" id="tactical-audit-card" style="display: none;">
+      <div class="audit-header">SCOUTING REPORT // DATA ANALYTICS DEPT.</div>
+      
+      <div class="scouting-card-layout">
+        <!-- Left Side: Metadata & Verdict -->
+        <div class="scouting-card-meta">
+          <div class="scout-identity-group">
+            <span class="scout-id-label">SCOUT ID</span>
+            <span class="scout-id-val" id="scout-card-name">GUEST SCOUT</span>
+          </div>
+          
+          <div class="scout-badge-group">
+            <span class="scout-badge-label">CLASS RATING</span>
+            <span class="scout-class-badge" id="scout-class-rating">CLASS A+</span>
+          </div>
+          
+          <div class="scout-verdict-group">
+            <span class="scout-verdict-label">DIAGNOSTIC REPORT</span>
+            <p class="scout-verdict-text" id="audit-desc">Analyst displays strong understanding of match dynamics. Solid potential for data recruiting.</p>
+          </div>
+        </div>
+        
+        <!-- Right Side: SVG Radar Chart & Attributes -->
+        <div class="scouting-card-graphics">
+          <div class="radar-chart-container" id="radar-chart-container">
+            <!-- Dynamic SVG radar chart injected here -->
+          </div>
+          
+          <div class="scouting-stats-list">
+            <div class="scout-stat-row">
+              <span class="scout-stat-name">VIS (Vision & Reading)</span>
+              <span class="scout-stat-num data-num" id="stat-num-vis">80</span>
+            </div>
+            <div class="scout-stat-row">
+              <span class="scout-stat-name">CUL (Football Culture)</span>
+              <span class="scout-stat-num data-num" id="stat-num-cul">60</span>
+            </div>
+            <div class="scout-stat-row">
+              <span class="scout-stat-name">SPD (Decision Speed)</span>
+              <span class="scout-stat-num data-num" id="stat-num-spd">70</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="audit-badges" style="margin-top: 1.5rem;">
+        <span class="audit-badge-tag success" id="audit-badge-strength">Strength: Front-Post Specialist</span>
+        <span class="audit-badge-tag danger" id="audit-badge-weakness">Weakness: Highlights-Only Spectator</span>
+      </div>
+
+      <!-- Download Button inside Card -->
+      <button class="download-scout-card-btn" onclick="downloadScoutCard(event)">Download Standalone Scouting Report</button>
+    </div>
+
     <div class="breakdown-list" id="breakdown-list"></div>
-    <button class="play-again" onclick="restartQuiz()">Play Again</button>
+
+    <!-- Next Challenge Section -->
+    <div id="next-challenge-box" class="next-challenge-box" style="display: none; margin: 2rem 0; padding: 2rem; background: rgba(212, 160, 23, 0.03); border: 1px dashed rgba(212, 160, 23, 0.25); border-radius: 4px; text-align: center; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+      <span style="font-family: 'Space Mono', monospace; font-size: 0.8rem; color: var(--gold); letter-spacing: 0.2em; text-transform: uppercase; display: block; margin-bottom: 0.5rem;">Next Tactical Challenge</span>
+      <h4 id="next-challenge-title" style="font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; font-weight: 800; text-transform: uppercase; color: #ffffff; margin: 0 0 1.2rem 0; letter-spacing: 0.05em;">Tactics & Strategy (Football Obsessive)</h4>
+      <button class="next-challenge-btn" id="next-challenge-btn" style="background: var(--gold); color: #080c0a; font-family: 'Space Mono', monospace; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; padding: 0.8rem 1.8rem; border: none; border-radius: 2px; cursor: pointer; transition: all 0.3s ease; letter-spacing: 0.05em; display: inline-block;">
+        Start Next Challenge &rarr;
+      </button>
+    </div>
+
+    <!-- All Completed Section -->
+    <div id="all-completed-box" class="all-completed-box" style="display: none; margin: 2rem 0; padding: 2.5rem; background: rgba(39, 174, 96, 0.04); border: 1px solid rgba(39, 174, 96, 0.25); border-radius: 4px; text-align: center; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+      <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin: 0 auto 1.2rem auto; filter: drop-shadow(0 0 10px rgba(39, 174, 96, 0.3));">
+        <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
+        <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+        <path d="M4 22h16" />
+        <path d="M10 14.66V17c0 .55-.45 1-1 1H4v2h16v-2h-5c-.55 0-1-.45-1-1v-2.34" />
+        <path d="M12 2a7 7 0 0 1 7 7v1.5a7 7 0 0 1-14 0V9a7 7 0 0 1 7-7z" />
+      </svg>
+      <h4 style="font-family: 'Space Mono', monospace; font-size: 0.9rem; color: var(--success); letter-spacing: 0.15em; text-transform: uppercase; margin: 0 0 0.5rem 0;">All Audits Completed</h4>
+      <p style="font-size: 0.95rem; color: rgba(245, 245, 245, 0.7); max-width: 500px; margin: 0 auto 1.5rem auto; line-height: 1.5;">You have successfully conquered all 9 tactical databases in my quiz system! Your profile has been officially logged in our elite registry.</p>
+      <button class="reset-progress-btn" onclick="resetQuizProgress()" style="background: transparent; color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.25); font-family: 'Space Mono', monospace; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; padding: 0.6rem 1.4rem; border-radius: 2px; cursor: pointer; transition: all 0.3s ease; letter-spacing: 0.05em;">
+        Reset Audit History &orarr;
+      </button>
+    </div>
+
+    <button class="play-again" onclick="restartQuiz()">Choose Another Quiz</button>
   </div>
 </section>
 
