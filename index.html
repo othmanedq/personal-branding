@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Othmane Eddaqqaq</title>
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="Othmane Eddaqqaq · Football. Data. Morocco.">
+  <meta property="og:description" content="PSG Academy alumni. Barca fan since 2009. Co-creator of Sqrew Football. Data meets the beautiful game.">
+  <meta property="og:image"       content="assets/images/psg-academy.jpg">
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Othmane Eddaqqaq · Football. Data. Morocco.">
+  <meta name="twitter:description" content="PSG Academy alumni. Barca fan since 2009. Co-creator of Sqrew Football.">
+  <meta name="twitter:image"       content="assets/images/psg-academy.jpg">
+  <meta name="description"         content="Othmane Eddaqqaq Moroccan football obsessive. PSG Academy alumni. Barca fan since 2009. Co-creator of Sqrew Football.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080808'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia%2C serif' font-weight='700' font-size='16' fill='%23D4A017'%3EOE%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursor-follower"></div>
+
+<!-- NAV -->
+<nav id="main-nav" aria-label="Site navigation">
+  <div class="nav-inner">
+    <div class="nav-logo">OE.</div>
+    <div class="nav-links">
+      <a href="#story">Story</a>
+      <a href="#stats">Numbers</a>
+      <a href="#sqrew">Analysis</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="#now">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- AUDIO -->
+
+<!-- VIDEO OVERLAY -->
+<div id="video-overlay" class="video-overlay" aria-hidden="true">
+  <video id="video-player" playsinline>
+    <source id="video-source" src="" type="video/mp4">
+  </video>
+  <button class="video-skip" onclick="skipVideo()">Skip &rarr;</button>
+</div>
+
+<!-- SCREEN FLASH -->
+<div id="screen-flash" class="screen-flash"></div>
+
+<!-- CHOICE MODAL -->
+<div id="choice-modal" class="choice-modal" aria-hidden="true">
+  <div class="choice-panel">
+    <div class="choice-face" id="choice-face">
+      <img id="choice-face-img" src="assets/images/face-smirk.png" alt="">
+    </div>
+    <p class="choice-verdict" id="choice-verdict"></p>
+    <p class="choice-prompt" id="choice-prompt">Now choose.</p>
+    <div class="choice-btns">
+      <button class="choice-btn" onclick="goTo('story')">
+        <span class="choice-btn-tag">01</span>
+        <span class="choice-btn-title">My Story</span>
+        <span class="choice-btn-sub">From the pitch to the classroom</span>
+      </button>
+      <button class="choice-btn" onclick="playModalSelect(); closeModal(); setTimeout(() => window.location.href='quiz.html', 320)">
+        <span class="choice-btn-tag">02</span>
+        <span class="choice-btn-title">The Quiz</span>
+        <span class="choice-btn-sub">10 questions. No help.</span>
+      </button>
+    </div>
+    <button class="choice-close" onclick="closeModal()" aria-label="Close">&times;</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<div id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+
+  <!-- Football pitch SVG texture -->
+  <svg class="hero-pitch" viewBox="0 0 900 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <!-- Outer boundary -->
+    <rect x="20" y="20" width="860" height="560" stroke="rgba(212,160,23,0.07)" stroke-width="1.5"/>
+    <!-- Halfway line -->
+    <line x1="450" y1="20" x2="450" y2="580" stroke="rgba(212,160,23,0.07)" stroke-width="1.5"/>
+    <!-- Center circle -->
+    <circle cx="450" cy="300" r="91.5" stroke="rgba(212,160,23,0.07)" stroke-width="1.5"/>
+    <!-- Center spot -->
+    <circle cx="450" cy="300" r="4" fill="rgba(212,160,23,0.07)"/>
+    <!-- Left penalty area -->
+    <rect x="20" y="193" width="132" height="214" stroke="rgba(212,160,23,0.06)" stroke-width="1"/>
+    <!-- Left 6-yard box -->
+    <rect x="20" y="244" width="55" height="112" stroke="rgba(212,160,23,0.05)" stroke-width="1"/>
+    <!-- Left penalty spot -->
+    <circle cx="141" cy="300" r="3" fill="rgba(212,160,23,0.06)"/>
+    <!-- Left penalty arc -->
+    <path d="M 152 258 A 91.5 91.5 0 0 0 152 342" stroke="rgba(212,160,23,0.05)" stroke-width="1" fill="none"/>
+    <!-- Right penalty area -->
+    <rect x="748" y="193" width="132" height="214" stroke="rgba(212,160,23,0.06)" stroke-width="1"/>
+    <!-- Right 6-yard box -->
+    <rect x="825" y="244" width="55" height="112" stroke="rgba(212,160,23,0.05)" stroke-width="1"/>
+    <!-- Right penalty spot -->
+    <circle cx="759" cy="300" r="3" fill="rgba(212,160,23,0.06)"/>
+    <!-- Right penalty arc -->
+    <path d="M 748 258 A 91.5 91.5 0 0 1 748 342" stroke="rgba(212,160,23,0.05)" stroke-width="1" fill="none"/>
+    <!-- Corner arcs -->
+    <path d="M 20 36 A 16 16 0 0 1 36 20" stroke="rgba(212,160,23,0.05)" stroke-width="1" fill="none"/>
+    <path d="M 880 36 A 16 16 0 0 0 864 20" stroke="rgba(212,160,23,0.05)" stroke-width="1" fill="none"/>
+    <path d="M 20 564 A 16 16 0 0 0 36 580" stroke="rgba(212,160,23,0.05)" stroke-width="1" fill="none"/>
+    <path d="M 880 564 A 16 16 0 0 1 864 580" stroke="rgba(212,160,23,0.05)" stroke-width="1" fill="none"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Football. Data. Morocco.</div>
+
+    <h1 class="hero-name" aria-label="Othmane Eddaqqaq">
+      <span class="name-line" id="name-line-1">OTHMANE</span>
+      <span class="name-line name-gold" id="name-line-2">EDDAQQAQ</span>
+    </h1>
+
+    <p class="hero-sub">I breathe football. I study data. Sometimes both at once.</p>
+    <p class="hero-direction">For people who go deeper than highlights.</p>
+
+    <div class="can-box">
+      <div class="can-question">Morocco are the rightful winners of AFCON 2025. Do you agree?</div>
+      <div class="can-btns">
+        <button class="can-btn btn-yes" onclick="canResponse(true)">Yes, obviously</button>
+        <button class="can-btn btn-no" onclick="canResponse(false)">No, Senegal won</button>
+      </div>
+      <div class="can-response" id="can-response"></div>
+    </div>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+
+  <!-- Ticker -->
+  <div class="hero-ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span class="ticker-item">PSG ACADEMY</span>
+      <span class="ticker-item ticker-sep">·</span>
+      <span class="ticker-item">BARCA SINCE 2009</span>
+      <span class="ticker-item ticker-sep">·</span>
+      <span class="ticker-item">AFCON 2025 CHAMPIONS</span>
+      <span class="ticker-item ticker-sep">·</span>
+      <span class="ticker-item">SQREW FOOTBALL</span>
+      <span class="ticker-item ticker-sep">·</span>
+      <span class="ticker-item">5 LEAGUES</span>
+      <span class="ticker-item ticker-sep">·</span>
+      <span class="ticker-item">KNOW THE GAME</span>
+      <span class="ticker-item ticker-sep">·</span>
+      <!-- Duplicate for seamless loop -->
+      <span class="ticker-item">PSG ACADEMY</span>
+      <span class="ticker-item ticker-sep">·</span>
+      <span class="ticker-item">BARCA SINCE 2009</span>
+      <span class="ticker-item ticker-sep">·</span>
+      <span class="ticker-item">AFCON 2025 CHAMPIONS</span>
+      <span class="ticker-item ticker-sep">·</span>
+      <span class="ticker-item">SQREW FOOTBALL</span>
+      <span class="ticker-item ticker-sep">·</span>
+      <span class="ticker-item">5 LEAGUES</span>
+      <span class="ticker-item ticker-sep">·</span>
+      <span class="ticker-item">KNOW THE GAME</span>
+      <span class="ticker-item ticker-sep">·</span>
+    </div>
+  </div>
+</div>
+
+<!-- STORY -->
+<section id="story">
+  <div class="reveal section-label">My Story</div>
+  <h2 class="reveal section-title reveal-delay-1">Born with<br>a ball.</h2>
+
+  <div class="timeline">
+    <!-- 2009 -->
+    <div class="tl-entry reveal">
+      <div class="tl-year">2009</div>
+      <div class="tl-dot"></div>
+      <div class="tl-body no-photo">
+        <div class="tl-text">
+          <div class="tl-heading">FC Barcelona, Age 6</div>
+          <p class="tl-desc">
+            Not because it was trendy. Because the philosophy, the history, the way they play football <strong>the right way</strong>. That is everything I believe in. Xavi, Iniesta, Messi. A six-year-old Moroccan kid watching something he would never forget.
+          </p>
+        </div>
+        <div class="tl-card">
+          <div class="tl-card-stat">16+</div>
+          <div class="tl-card-label">Years of unconditional support</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2018 -->
+    <div class="tl-entry reveal reveal-delay-1">
+      <div class="tl-year">2018</div>
+      <div class="tl-dot"></div>
+      <div class="tl-body">
+        <div class="tl-text">
+          <div class="tl-heading">PSG Academy Morocco</div>
+          <p class="tl-desc">
+            <strong>6 years on the pitch</strong>, training at the PSG Academy Morocco and playing for FUS Rabat. That grind taught me discipline, how to read the game, and what separates good players from great ones. The pitch is where you learn what no classroom can teach.
+          </p>
+        </div>
+        <div class="tl-photo">
+          <img src="assets/images/psg-academy.jpg" alt="PSG Academy Morocco" loading="lazy">
+          <div class="tl-photo-label">PSG Academy Morocco</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2020 -->
+    <div class="tl-entry reveal reveal-delay-2">
+      <div class="tl-year">2020</div>
+      <div class="tl-dot"></div>
+      <div class="tl-body no-photo">
+        <div class="tl-text">
+          <div class="tl-heading">Sqrew Football</div>
+          <p class="tl-desc">
+            Started as a group chat. Became 12 videos. <strong>Sqrew Football</strong> — no brief, no sponsors, just actual analysis. UCL breakdowns. Tactical deep dives. We called 7 of 8 group stage predictions in 2020-21. Then life moved on. The instinct to explain the game never did.
+          </p>
+        </div>
+        <div class="tl-card">
+          <div class="tl-card-stat">7/8</div>
+          <div class="tl-card-label">UCL group predictions correct</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2022 -->
+    <div class="tl-entry reveal reveal-delay-3">
+      <div class="tl-year">2022</div>
+      <div class="tl-dot"></div>
+      <div class="tl-body">
+        <div class="tl-text">
+          <div class="tl-heading">Atlas Lions, Qatar</div>
+          <p class="tl-desc">
+            Morocco at a World Cup semi-final. <strong>The first African and Arab nation to reach the final four.</strong> I was there in spirit, every minute of it. The run that changed everything. If you know, you know.
+          </p>
+        </div>
+        <div class="tl-photo">
+          <img src="assets/images/qatar-wc.jpg" alt="Morocco 2022 World Cup Qatar" loading="lazy">
+          <div class="tl-photo-label">Morocco · 2022 World Cup</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2024 -->
+    <div class="tl-entry reveal reveal-delay-4">
+      <div class="tl-year">2024</div>
+      <div class="tl-dot"></div>
+      <div class="tl-body">
+        <div class="tl-text">
+          <div class="tl-heading">El Clasico, Paris</div>
+          <p class="tl-desc">
+            When El Clasico comes to Paris, you do not miss it. The crowd, the atmosphere, the football talk that never stops. This is what happens when football obsession meets opportunity.
+          </p>
+        </div>
+        <div class="tl-photo">
+          <img src="assets/images/el-clasico.jpg" alt="El Clasico Paris event" loading="lazy">
+          <div class="tl-photo-label">El Clasico · Paris</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Now -->
+    <div class="tl-entry reveal reveal-delay-4">
+      <div class="tl-year">NOW</div>
+      <div class="tl-dot"></div>
+      <div class="tl-body no-photo">
+        <div class="tl-text">
+          <div class="tl-heading">Albert School</div>
+          <p class="tl-desc">
+            Studying <strong>data and finance</strong> at Albert School. Bringing that lens to sports — because football has never been more quantifiable, and most people still watch it with their eyes closed.
+          </p>
+        </div>
+        <div class="tl-card">
+          <div class="tl-card-stat">5</div>
+          <div class="tl-card-label">Leagues tracked weekly</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="reveal section-label">By the numbers.</div>
+
+  <!-- Part A: single big stat -->
+  <div class="single-stat-block reveal reveal-delay-1">
+    <div class="single-stat-num">0<span class="single-stat-plus">+</span></div>
+    <div class="single-stat-label">Barca + Morocco matches since 2014</div>
+    <p class="single-stat-sub">Every La Liga game. Every Copa. Every UCL night. Every AFCON qualifier. Every World Cup minute.</p>
+  </div>
+
+  <!-- Part B: emotional timeline -->
+  <h2 class="reveal section-title reveal-delay-2" style="margin-top:4rem">The moments that cost me.</h2>
+  <div class="moments-timeline reveal reveal-delay-3"><div class="moments-track">
+    <div class="moment-card is-barca">
+      <div class="moment-img mi-gold" data-wiki="2008–09_FC_Barcelona_season"><div class="mi-bg"></div><div class="mi-score">6<span class="mi-denom">/6</span></div><div class="mi-label">Sextuple</div></div>
+<div class="moment-year">2009</div>
+      <div class="moment-team">BARÇA</div>
+      <div class="moment-title">Sextuple. The impossible season.</div>
+      <div class="moment-note">"6 years old. I understood nothing. I understood everything."</div>
+    </div>
+    <div class="moment-card is-barca">
+      <div class="moment-img" data-wiki="El_Clásico"><div class="mi-bg"></div><div class="mi-score">6<span class="mi-sep">-</span>2</div><div class="mi-label">Bernabéu</div></div>
+<div class="moment-year">2009</div>
+      <div class="moment-team">BARÇA</div>
+      <div class="moment-title">6-2 at the Bernabéu.</div>
+      <div class="moment-note">"Pep's team. At their home. Still gives me chills."</div>
+    </div>
+    <div class="moment-card is-barca">
+      <div class="moment-img" data-wiki="2010_Supercopa_de_España"><div class="mi-bg"></div><div class="mi-score">5<span class="mi-sep">-</span>0</div><div class="mi-label">La Manita</div></div>
+<div class="moment-year">2010</div>
+      <div class="moment-team">BARÇA</div>
+      <div class="moment-title">5-0. La Manita.</div>
+      <div class="moment-note">"Piqué held up five fingers. The Camp Nou lost its mind."</div>
+    </div>
+    <div class="moment-card is-barca">
+      <div class="moment-img mi-gold" data-wiki="2011_UEFA_Champions_League_final"><div class="mi-bg"></div><div class="mi-score">3<span class="mi-sep">-</span>1</div><div class="mi-label">Wembley ★</div></div>
+<div class="moment-year">2011</div>
+      <div class="moment-team">BARÇA</div>
+      <div class="moment-title">Wembley. UCL Final. 3-1.</div>
+      <div class="moment-note">"The best team ever assembled. Not a debate. Never will be."</div>
+    </div>
+    <div class="moment-card is-maroc">
+      <div class="moment-img" data-wiki="2012_Africa_Cup_of_Nations"><div class="mi-bg"></div><div class="mi-score mi-void">—</div><div class="mi-label">AFCON 2012</div></div>
+<div class="moment-year">2012</div>
+      <div class="moment-team">MAROC</div>
+      <div class="moment-title">Absent. Again.</div>
+      <div class="moment-note">"Failed to qualify for AFCON 2012. We were going nowhere."</div>
+    </div>
+    <div class="moment-card is-barca">
+      <div class="moment-img mi-dark" data-wiki="2012–13_UEFA_Champions_League_semi-finals"><div class="mi-bg"></div><div class="mi-score mi-pain">7<span class="mi-sep">-</span>0</div><div class="mi-label">Aggregate</div></div>
+<div class="moment-year">2013</div>
+      <div class="moment-team">BARÇA</div>
+      <div class="moment-title">Bayern. 7-0 aggregate.</div>
+      <div class="moment-note">"The first time I realised nothing lasts forever."</div>
+    </div>
+    <div class="moment-card is-maroc">
+      <div class="moment-img" data-wiki="Morocco_national_football_team"><div class="mi-bg"></div><div class="mi-score mi-void">✕</div><div class="mi-label">No WC 2014</div></div>
+<div class="moment-year">2014</div>
+      <div class="moment-team">MAROC</div>
+      <div class="moment-title">No World Cup. Not even close.</div>
+      <div class="moment-note">"20 years without a World Cup. The drought felt permanent."</div>
+    </div>
+    <div class="moment-card is-barca">
+      <div class="moment-img mi-gold" data-wiki="2015_UEFA_Champions_League_final"><div class="mi-bg"></div><div class="mi-score">MSN</div><div class="mi-label">Treble ×3</div></div>
+<div class="moment-year">2015</div>
+      <div class="moment-team">BARÇA</div>
+      <div class="moment-title">Treble. MSN. Untouchable.</div>
+      <div class="moment-note">"Messi, Suárez, Neymar. The last time I felt invincible."</div>
+    </div>
+    <div class="moment-card is-maroc">
+      <div class="moment-img" data-wiki="Morocco_national_football_team"><div class="mi-bg"></div><div class="mi-score mi-void">-2</div><div class="mi-label">Banned</div></div>
+<div class="moment-year">2015</div>
+      <div class="moment-team">MAROC</div>
+      <div class="moment-title">AFCON ban. 2 years.</div>
+      <div class="moment-note">"We refused to host over Ebola. CAF banned us. Painful call."</div>
+    </div>
+    <div class="moment-card is-barca">
+      <div class="moment-img mi-dark" data-wiki="2015–16_UEFA_Champions_League_semi-finals"><div class="mi-bg"></div><div class="mi-score mi-pain">PEN</div><div class="mi-label">UCL SF Exit</div></div>
+<div class="moment-year">2016</div>
+      <div class="moment-team">BARÇA</div>
+      <div class="moment-title">Atlético. UCL SF. Penalties.</div>
+      <div class="moment-note">"Messi missed. We lost on pens. That's football being cruel."</div>
+    </div>
+    <div class="moment-card is-barca">
+      <div class="moment-img mi-gold" data-wiki="2016–17_UEFA_Champions_League_round_of_16"><div class="mi-bg"></div><div class="mi-score mi-gold-txt">6<span class="mi-sep">-</span>1</div><div class="mi-label">Remontada ⚡</div></div>
+<div class="moment-year">2017</div>
+      <div class="moment-team">BARÇA</div>
+      <div class="moment-title">Remontada. 6-1 vs PSG.</div>
+      <div class="moment-note">"The night I thought football was pure magic."</div>
+    </div>
+    <div class="moment-card is-barca">
+      <div class="moment-img mi-dark" data-wiki="2016–17_UEFA_Champions_League_semi-finals"><div class="mi-bg"></div><div class="mi-score mi-pain">3<span class="mi-sep">-</span>0</div><div class="mi-label">UCL SF</div></div>
+<div class="moment-year">2017</div>
+      <div class="moment-team">BARÇA</div>
+      <div class="moment-title">Juventus. UCL SF. 3-0.</div>
+      <div class="moment-note">"High in March. Humiliated in May. Classic Barça."</div>
+    </div>
+    <div class="moment-card is-maroc">
+      <div class="moment-img" data-wiki="2017_Africa_Cup_of_Nations"><div class="mi-bg"></div><div class="mi-score mi-void">QF</div><div class="mi-label">Out vs Egypt</div></div>
+<div class="moment-year">2017</div>
+      <div class="moment-team">MAROC</div>
+      <div class="moment-title">AFCON. QF. Egypt.</div>
+      <div class="moment-note">"Back after the ban. Quarter-final. Out. Not enough."</div>
+    </div>
+    <div class="moment-card is-barca">
+      <div class="moment-img mi-dark" data-wiki="2017–18_UEFA_Champions_League_quarter-finals"><div class="mi-bg"></div><div class="mi-score mi-pain">3<span class="mi-sep">-</span>0</div><div class="mi-label">First leg only</div></div>
+<div class="moment-year">2018</div>
+      <div class="moment-team">BARÇA</div>
+      <div class="moment-title">Roma. 3-0 first leg. Gone.</div>
+      <div class="moment-note">"How do you blow a 3-0 lead. How."</div>
+    </div>
+    <div class="moment-card is-maroc">
+      <div class="moment-img" data-wiki="Morocco_at_the_2018_FIFA_World_Cup"><div class="mi-bg"></div><div class="mi-score mi-pain">VAR</div><div class="mi-label">Russia 2018</div></div>
+<div class="moment-year">2018</div>
+      <div class="moment-team">MAROC</div>
+      <div class="moment-title">Russia. Back after 20 years. VAR.</div>
+      <div class="moment-note">"VAR is bullshit. Always will be."</div>
+    </div>
+    <div class="moment-card is-barca">
+      <div class="moment-img mi-dark" data-wiki="2018–19_UEFA_Champions_League_semi-finals"><div class="mi-bg"></div><div class="mi-score mi-pain">4<span class="mi-sep">-</span>0</div><div class="mi-label">Anfield</div></div>
+<div class="moment-year">2019</div>
+      <div class="moment-team">BARÇA</div>
+      <div class="moment-title">Anfield. Liverpool. 4-0.</div>
+      <div class="moment-note">"The worst night of my life. No Salah. No Firmino. Didn't matter."</div>
+    </div>
+    <div class="moment-card is-barca">
+      <div class="moment-img mi-dark" data-wiki="2019–20_UEFA_Champions_League_quarter-finals"><div class="mi-bg"></div><div class="mi-score mi-pain mi-huge">8<span class="mi-sep">-</span>2</div><div class="mi-label">Lisbon 💀</div></div>
+<div class="moment-year">2020</div>
+      <div class="moment-team">BARÇA</div>
+      <div class="moment-title">Bayern. Lisbon. 8-2.</div>
+      <div class="moment-note">"I didn't watch the second half. I should have left at half-time."</div>
+    </div>
+    <div class="moment-card is-barca">
+      <div class="moment-img mi-dark" data-wiki="Lionel_Messi"><div class="mi-bg"></div><div class="mi-score mi-void">UEL</div><div class="mi-label">Messi gone</div></div>
+<div class="moment-year">2021</div>
+      <div class="moment-team">BARÇA</div>
+      <div class="moment-title">Europa League. Messi leaves.</div>
+      <div class="moment-note">"Europa League. And then Messi left. Same summer."</div>
+    </div>
+    <div class="moment-card is-maroc">
+      <div class="moment-img mi-gold" data-wiki="Morocco_at_the_2022_FIFA_World_Cup"><div class="mi-bg"></div><div class="mi-score mi-gold-txt">4★</div><div class="mi-label">1st Arab SF</div></div>
+<div class="moment-year">2022</div>
+      <div class="moment-team">MAROC</div>
+      <div class="moment-title">Qatar. Semi-final. History.</div>
+      <div class="moment-note">"First African and Arab nation in a WC semi. I cried. Not ashamed."</div>
+    </div>
+    <div class="moment-card is-barca">
+      <div class="moment-img mi-dark" data-wiki="2022–23_UEFA_Champions_League_group_stage"><div class="mi-bg"></div><div class="mi-score mi-pain">GRP</div><div class="mi-label">Crashed out</div></div>
+<div class="moment-year">2022</div>
+      <div class="moment-team">BARÇA</div>
+      <div class="moment-title">UCL group stage. Out. Again.</div>
+      <div class="moment-note">"We win La Liga. We crash in groups. Make it make sense."</div>
+    </div>
+    <div class="moment-card is-maroc">
+      <div class="moment-img" data-wiki="2023_Africa_Cup_of_Nations"><div class="mi-bg"></div><div class="mi-score mi-pain">PEN</div><div class="mi-label">AFCON QF</div></div>
+<div class="moment-year">2024</div>
+      <div class="moment-team">MAROC</div>
+      <div class="moment-title">AFCON. QF. South Africa. Pens.</div>
+      <div class="moment-note">"Unacceptable. Still hurts. Full stop."</div>
+    </div>
+    <div class="moment-card is-barca">
+      <div class="moment-img mi-gold" data-wiki="FC_Barcelona"><div class="mi-bg"></div><div class="mi-score mi-gold-txt">↑</div><div class="mi-label">We're back</div></div>
+<div class="moment-year">2025</div>
+      <div class="moment-team">BARÇA</div>
+      <div class="moment-title">La Liga. UCL Semi.</div>
+      <div class="moment-note">"We're back. Slowly. Lewandowski carrying the whole thing."</div>
+    </div>
+    <div class="moment-card is-maroc">
+      <div class="moment-img mi-gold" data-wiki="2025_Africa_Cup_of_Nations_final"><div class="mi-bg"></div><div class="mi-score mi-gold-txt">★</div><div class="mi-label">Champions</div></div>
+<div class="moment-year">2025</div>
+      <div class="moment-team">MAROC</div>
+      <div class="moment-title">AFCON Final. Tapis vert.</div>
+      <div class="moment-note">"Lost on the pitch. Won at the table. We're champions."</div>
+    </div>
+  </div></div>
+</section>
+
+<!-- HOW I READ THE GAME -->
+<section id="sqrew">
+  <div class="reveal section-label">Analysis</div>
+  <h2 class="reveal section-title reveal-delay-1">How I<br>read the game.</h2>
+
+  <!-- BLOC 01 — Sqrew Football -->
+  <div class="analysis-block reveal">
+    <div class="analysis-text">
+      <div class="analysis-index">01</div>
+      <div class="analysis-heading">Sqrew Football — 2020</div>
+      <p class="analysis-desc">Watching football wasn't enough. So we built something. 12 videos on UCL, La Liga, tactics. No sponsors. No brief. Actual analysis — not recaps. I called 7 out of 8 group stage predictions in the 2020-21 Champions League.</p>
+      <a href="https://www.youtube.com/@sqrewfootball1535" target="_blank" rel="noopener noreferrer" class="sqrew-link">Watch on YouTube &rarr;</a>
+    </div>
+    <div class="analysis-card">
+      <div class="analysis-stat"><span class="analysis-stat-num">12</span><span class="analysis-stat-label">Videos published</span></div>
+      <div class="analysis-stat"><span class="analysis-stat-num">7/8</span><span class="analysis-stat-label">UCL group predictions correct</span></div>
+      <div class="analysis-stat"><span class="analysis-stat-num">0</span><span class="analysis-stat-label">Sponsors. Ever.</span></div>
+      <div class="analysis-quote">"Lewandowski is surgical. Atlético's counter is their weapon. City without De Bruyne is a different beast."</div>
+    </div>
+  </div>
+
+  <!-- BLOC 02 — TacticAI -->
+  <div class="analysis-block reveal">
+    <div class="analysis-text">
+      <div class="analysis-index">02</div>
+      <div class="analysis-heading">TacticAI — DeepMind × Liverpool FC</div>
+      <p class="analysis-desc">I analyzed TacticAI, a research paper by Google DeepMind and Liverpool FC applying graph neural networks to corner kick optimization. The finding that stopped me: 1 in 8 goals comes from corners. 30% of professional goals originate from set pieces. Data changes how you read a dead ball situation.</p>
+      <a href="https://arxiv.org/abs/2310.10553" target="_blank" rel="noopener noreferrer" class="sqrew-link">Read on arXiv &rarr;</a>
+    </div>
+    <div class="analysis-card">
+      <div class="analysis-stat"><span class="analysis-stat-num">1/8</span><span class="analysis-stat-label">Goals scored from corners</span></div>
+      <div class="analysis-stat"><span class="analysis-stat-num">30%</span><span class="analysis-stat-label">Pro goals from set pieces</span></div>
+      <div class="analysis-stat"><span class="analysis-stat-num">GNN</span><span class="analysis-stat-label">Graph Neural Networks applied to football</span></div>
+      <div class="analysis-badge">Google DeepMind × Liverpool FC · 2024</div>
+    </div>
+  </div>
+
+  <!-- BLOC 03 — Premier League Odds Paper -->
+  <div class="analysis-block reveal">
+    <div class="analysis-text">
+      <div class="analysis-index">03</div>
+      <div class="analysis-heading">Are Bookmaker Odds Rational Forecasts?</div>
+      <p class="analysis-desc">Co-authored an academic paper (Albert School × Mines Paris PSL) testing whether Bet365 implied probabilities are rational and efficient forecasts across 20 seasons of Premier League data. We applied ARIMA modelling, Granger causality tests, and the Mincer-Zarnowitz rationality test. The market is broadly efficient — except for away wins, where bookmakers systematically understate the probability (p = 0.028).</p>
+      <span class="sqrew-link" style="opacity:0.35;pointer-events:none;cursor:default">Paper available on request</span>
+    </div>
+    <div class="analysis-card">
+      <div class="analysis-stat"><span class="analysis-stat-num">7,299</span><span class="analysis-stat-label">Premier League matches analyzed</span></div>
+      <div class="analysis-stat"><span class="analysis-stat-num">20</span><span class="analysis-stat-label">Seasons of data (2005–2025)</span></div>
+      <div class="analysis-stat"><span class="analysis-stat-num">p = 0.028</span><span class="analysis-stat-label">Away-win bias — statistically significant</span></div>
+      <div class="analysis-badge">Albert School × Mines Paris PSL · May 2025</div>
+    </div>
+  </div>
+</section>
+
+<!-- NOW -->
+<section id="now" style="padding: 6rem 2rem; border-top: 1px solid rgba(255,255,255,0.06);">
+  <div class="now-section reveal">
+    <div class="section-label">Now</div>
+    <h2 class="now-title">Looking for<br>people who take<br>the game seriously.</h2>
+    <p class="now-sub">I played it. I analyzed it. I quantified it. If you're building something at the intersection of football and data, let's talk.</p>
+    <div class="now-btns">
+      <a href="mailto:oeddaqqaq@gmail.com" class="now-btn-primary">Send a message &rarr;</a>
+      <a href="quiz.html" class="now-btn-secondary">Take the quiz &rarr;</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">OE.</div>
+  <div class="footer-links">
+    <a href="https://www.youtube.com/@sqrewfootball1535" target="_blank" rel="noopener noreferrer">YouTube</a>
+    <a href="https://linkedin.com/in/oeddaqqaq" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a href="mailto:oeddaqqaq@gmail.com">Email</a>
+  </div>
+  <div class="footer-copy">Othmane Eddaqqaq &copy; 2025</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrambleTextPlugin.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

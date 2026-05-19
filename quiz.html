@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Quiz · Othmane Eddaqqaq</title>
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="Football Quiz · Othmane Eddaqqaq">
+  <meta property="og:description" content="10 questions. No help. Think you know football?">
+  <meta name="description"        content="10 questions. No help. Think you know football?">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080808'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia%2C serif' font-weight='700' font-size='16' fill='%23D4A017'%3EOE%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursor-follower"></div>
+
+<!-- NAV — visible by default (no hero on this page) -->
+<nav id="main-nav" class="visible" aria-label="Site navigation">
+  <div class="nav-inner">
+    <div class="nav-logo"><a href="index.html" style="color:inherit;text-decoration:none">OE.</a></div>
+    <div class="nav-links">
+      <a href="index.html#story">Story</a>
+      <a href="index.html#stats">Numbers</a>
+      <a href="index.html#sqrew">Sqrew</a>
+      <a href="quiz.html" class="nav-active">Quiz</a>
+    </div>
+  </div>
+</nav>
+
+<!-- SCREEN FLASH -->
+<div id="screen-flash" class="screen-flash"></div>
+
+<!-- QUIZ PAGE HERO -->
+<div class="quiz-page-hero">
+  <div class="section-label">The Challenge</div>
+  <h1 class="quiz-page-title">Think you know<br>football?</h1>
+  <p class="quiz-page-sub">10 questions. No help. Let's see if you're on my level.</p>
+</div>
+
+<!-- QUIZ -->
+<section id="quiz">
+  <div id="quiz-container">
+    <!-- Progress bar -->
+    <div class="quiz-progress">
+      <div class="progress-steps" id="progress-steps"></div>
+    </div>
+
+    <!-- Reaction speech bubble -->
+    <div class="quiz-reaction">
+      <div class="speech-bubble">
+        <div class="bubble-face" id="reaction-emoji">
+          <img src="assets/images/face-smirk.png" alt="Othmane reaction">
+        </div>
+        <span class="bubble-text" id="reaction-text">"Go ahead. I dare you."</span>
+      </div>
+      <div class="score-display" id="score-display">0 / 0</div>
+    </div>
+
+    <div id="questions-list"></div>
+  </div>
+
+  <div class="final-screen" id="final-screen">
+    <div class="final-score-big" id="final-score-num">0<span>/10</span></div>
+    <h3 class="final-title" id="final-title">GG</h3>
+    <p class="final-subtitle" id="final-subtitle"></p>
+    <div class="breakdown-list" id="breakdown-list"></div>
+    <button class="play-again" onclick="restartQuiz()">Play Again</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">OE.</div>
+  <div class="footer-links">
+    <a href="https://www.youtube.com/@sqrewfootball1535" target="_blank" rel="noopener noreferrer">YouTube</a>
+    <a href="https://linkedin.com/in/oeddaqqaq" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a href="mailto:oeddaqqaq@gmail.com">Email</a>
+  </div>
+  <div class="footer-copy">Othmane Eddaqqaq &copy; 2025</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/quiz.js"></script>
+</body>
+</html>
