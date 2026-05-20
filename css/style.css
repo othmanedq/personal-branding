@@ -4,11 +4,11 @@
   --gold: #D4A017;
   --red: #C41E3A;
   --success: #22c55e;
-  --dark: oklch(13% 0.015 160); /* Deep emerald tinted charcoal */
-  --dark2: oklch(16% 0.012 160); /* Lighter deep emerald charcoal */
-  --dark3: oklch(19% 0.01 160);  /* Card / box charcoal */
-  --white: #f5f5f5;
-  --muted: #8a918f;
+  --dark: oklch(13% 0.015 160);  /* Deep emerald tinted charcoal */
+  --dark2: oklch(17% 0.015 160); /* Lighter deep emerald charcoal */
+  --dark3: oklch(21% 0.013 160); /* Card / box charcoal — more distinct from bg */
+  --white: #f9f9f7;              /* Warm near-white — easier on the eye */
+  --muted: #aab5b2;              /* Lifted from 57% to 68% luminance — critical for readability */
   --mono: 'Space Mono', monospace;
 }
 html { scroll-behavior: smooth; }
@@ -16,6 +16,7 @@ body {
   background: var(--dark);
   color: var(--white);
   font-family: 'Barlow', sans-serif;
+  font-size: 17px; /* Bumped from browser default 16px for better dark-bg readability */
   overflow-x: hidden;
   cursor: none;
 }
